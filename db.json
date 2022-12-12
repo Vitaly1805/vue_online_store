@@ -1,9 +1,8 @@
 {
-    "posts": [
-      { "id": 1, "title": "json-server", "author": "typicode" }
-    ],
-    "comments": [
-      { "id": 1, "body": "some comment", "postId": 1 }
-    ],
-    "profile": { "name": "typicode" }
-  }
+	"products": [
+		{"id": 1, "name": "Text1", "price": 222, "img": "bike-1.jpg"},
+		{"id": 2, "name": "Text2", "price": 111, "img": "bike-2.jpg"},
+		{"id": 3, "name": "Text3", "price": 333, "img": "bike-3.jpg"},
+		{"id": 4, "name": "Text4", "price": 444, "img": "bike-4.jpg"}
+	]
+}
