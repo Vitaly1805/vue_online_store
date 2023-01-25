@@ -1,6 +1,6 @@
 <template lang="">
   <div class="v-mini-cart-item">
-    <img :src=" require(`../assets/img/${product.img}`) " alt="" class="v-mini-cart-item__img">
+    <img :src=" require(`../../assets/img/${product.img}`) " alt="" class="v-mini-cart-item__img">
     <div class="v-mini-cart-item__info">
       <div class="v-mini-cart-item__name">
         {{product.name}}

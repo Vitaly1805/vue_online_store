@@ -1,6 +1,6 @@
 <template>
     <div class="v-catalog-item">
-			<img class="v-catalog-item__img" :src=" require(`../assets/img/${product.img}`) " alt=""> 
+			<img class="v-catalog-item__img" :src=" require(`../../assets/img/${product.img}`) " alt=""> 
       <div class="v-catalog-item__info">
         <p class="v-catalog-item__title">{{product.name}}</p>
         <p class="v-catalog-item__price">{{product.price}}</p>

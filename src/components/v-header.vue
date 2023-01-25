@@ -32,7 +32,7 @@
 
 <script>
 
-import vMiniCart from './v-mini-cart.vue'
+import vMiniCart from './cart/v-mini-cart.vue'
 import { mapGetters } from 'vuex';
 
 export default {

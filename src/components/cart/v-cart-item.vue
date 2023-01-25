@@ -1,6 +1,6 @@
 <template lang="">
   <div class="v-cart-item">
-    <img :src=" require(`../assets/img/${product.img}`) " alt="" class="v-cart-item__img">
+    <img :src=" require(`../../assets/img/${product.img}`) " alt="" class="v-cart-item__img">
     <div class="v-cart-item__name">
       {{product.name}}
     </div>
@@ -15,6 +15,7 @@
         onkeypress="return (event.charCode >= 48 && event.charCode <= 57 && /^\d{0,3}$/.test(this.value));"
         :value="product.quantity"
         @input="setQuantity"
+        @blur="setQuantityToInput"
         >
       <div class="v-cart-item__quantity-increment"
         @click="INCREMENT_QUANTITY_PRODUCT(index)"  
@@ -64,6 +65,11 @@ export default {
     setQuantity(event) {
       let quantity = +event.target.value
       this.SET_QUANTITY_PRODUCT({quantity, index: this.index})
+    },
+    setQuantityToInput(event) {
+      if(!event.target.value || event.target.value === '0') {
+        event.target.value = 1
+      }
     }
   }
 }
