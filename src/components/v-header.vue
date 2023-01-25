@@ -1,0 +1,203 @@
+<template>
+  <div class="v-header">
+    <div class="v-header__body _container">
+      <router-link to="/">
+        <img src="../assets/img/logo.png" alt="" class="v-header__logo">
+      </router-link>
+      <router-link to="/">
+        <div class="v-header__products">
+        <div class="v-header__burger">
+          <span></span>
+        </div>
+        <div class="v-header__title">
+          все товары
+        </div>
+        <span class="v-header__arrow"></span>
+      </div>  
+      </router-link>
+      <input class="v-header__search" type="text" placeholder="Поиск">
+      <div class="v-header__cart" @click="toggleActiveMiniCart">
+        <span class="v-header__cart-icon"></span>
+        <div class="v-header__cart-status">
+          Корзина: {{ QUANTITY_CART }} товар
+        </div>
+        <vMiniCart 
+          :class="{ active: isActive }" 
+          @toggleActiveMiniCart="toggleActiveMiniCart"
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+
+import vMiniCart from './v-mini-cart.vue'
+import { mapGetters } from 'vuex';
+
+export default {
+  name: "v-header",
+  data() {
+    return {
+      isActive: false
+    }
+  },
+  components: {
+    vMiniCart
+  },
+  computed: {
+    ...mapGetters([
+      'CART',
+      'QUANTITY_CART'
+    ])
+  },
+  methods: {
+    toggleActiveMiniCart(event) {
+      if(event.target.classList.contains('v-mini-cart__button_close')) {
+        event.target.disabled = true
+
+        setTimeout(() => {
+          event.target.disabled = false
+        }, 500)
+      }
+
+      this.isActive = !this.isActive && this.CART.length ? true : false
+    }
+  }
+}
+
+</script>
+
+<style lang="scss">
+.v-header {
+  height: $heightHeader;
+  background: #000;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  &__body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__logo {
+    padding: 0 30px 0 0;
+  }
+
+  &__products {
+    height: 50px;
+    border-right: 1px solid #cdcdcd;
+    border-left: 1px solid #cdcdcd;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+  }
+
+  &__burger {
+    height: 16px;
+    width: 16px;
+    position: relative;
+
+    span {
+      top: 7px;
+    }
+
+    span,
+    &::before,
+    &::after {
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      background: #fff;
+      left: 0;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+    }
+
+    &::before {
+      top: 1px;
+    }
+
+    &::after {
+      bottom: 1px;
+    }
+  }
+
+  &__title {
+    color: #fff;
+    font-size: 1.1em;
+    white-space: nowrap;
+    text-transform: uppercase;
+    margin: 0 10px;
+  }
+
+  &__arrow {
+    margin: 0 7px 0 0;
+    height: 10px;
+    width: 10px;
+    position: relative;
+
+    &::before,
+    &::after {
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      background: #fff;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+    }
+
+    &::before {
+      top: 5px;
+      left: 0;
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      top: 5px;
+      left: 6px;
+      transform: rotate(135deg);
+    }
+  }
+
+  &__search {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 20px;
+    margin: 0 10px;
+    background: #cdcdcd;
+
+    &:focus {
+      background: #fff;
+    }
+  }
+
+  &__cart {
+    height: 100%;
+    cursor: pointer;
+    color: #fff;
+    white-space: nowrap;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  &__cart-icon {
+  }
+
+  &__cart-status {
+    
+  }
+}
+
+</style>

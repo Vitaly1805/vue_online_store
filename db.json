@@ -1,8 +1,8 @@
 {
 	"products": [
-		{"id": 1, "name": "Text1", "price": 222, "img": "bike-1.jpg"},
-		{"id": 2, "name": "Text2", "price": 111, "img": "bike-2.jpg"},
-		{"id": 3, "name": "Text3", "price": 333, "img": "bike-3.jpg"},
-		{"id": 4, "name": "Text4", "price": 444, "img": "bike-4.jpg"}
+		{"id": 1, "name": "Холодильник Саратов 550", "price": 12690, "img": "refrigerators/refrigerator-1.jpg"},
+		{"id": 2, "name": "Холодильник Саратов 549", "price": 14965, "img": "refrigerators/refrigerator-2.jpg"},
+		{"id": 3, "name": "Холодильник Саратов 467 (КШ-210/25)", "price": 17457, "img": "refrigerators/refrigerator-3.jpg"},
+		{"id": 4, "name": "Холодильник Бирюса M 107", "price": 14560, "img": "refrigerators/refrigerator-4.jpg"}
 	]
 }

@@ -1,45 +1,24 @@
 <template>
     <div class="v-main-wrapper">
-        <p>{{title}}</p>
-        <vCatalog />
-				<span class="button" v-on:click="printHello">Нажми</span>
+        <vHeader />
+        <router-view></router-view>
 				<input type="text" v-model="title">
     </div>
 </template>
 
 <script>
-import vCatalog from './v-catolog.vue'
+import vHeader from './v-header.vue'
 
 export default {
     name: 'v-main-wrapper',
-    data() {
-        return {
-            title: 'Hello niggers:)'
-        }
-    },
     components: {
-			vCatalog
-    },
-		methods: {
-			printHello() {
-				alert('Зачем нажал?')
-			}
-		}
+      vHeader
+    }
 }
 </script>
 
 <style lang="scss">
-body {
-    
-}
-
-.button {
-	display: inline-block;
-	padding: 10px 20px;
-	font-size: 20px;
-	text-align: center;
-	background: #cdcdcd;
-	margin: 20px 0;
-	cursor: pointer;
+.v-main-wrapper {
+  padding: 65px 0 0 0;
 }
 </style>
