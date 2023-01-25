@@ -8,22 +8,30 @@
       {{product.price}} руб.
     </div>
     <div class="v-cart-item__block-quantity">
-      <div class="v-cart-item__quantity-minus" 
-        @click="incQuntityProduct"  
+      <div class="v-cart-item__quantity-decrement" 
+        @click="DECREMENT_QUANTITY_PRODUCT(index)"  
       ></div>
-      <input type="text" class="v-cart-item__quantity" :value="product.quantity">
-      <div class="v-cart-item__quantity-plus"></div>
+      <input type="number" class="v-cart-item__quantity" 
+        onkeypress="return (event.charCode >= 48 && event.charCode <= 57 && /^\d{0,3}$/.test(this.value));"
+        :value="product.quantity"
+        @input="setQuantity"
+        >
+      <div class="v-cart-item__quantity-increment"
+        @click="INCREMENT_QUANTITY_PRODUCT(index)"  
+      ></div>
       <span></span>
     </div>
     <div class="v-cart-item__sum">
-      53000 руб.
+      {{SUM_PRODUCT(index)}} руб.
     </div>
-    <div class="v-cart-item__delete" @click="deleteProductFromCart">
+    <div class="v-cart-item__delete" @click="DELETE_PRODUCT_FROM_CART(index)">
       Удалить
     </div>
   </div>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   name: 'v-cart-item',
   props: {
@@ -32,19 +40,30 @@ export default {
       default() {
         return {}
       }
-    }
-  },
-  data() {
-    return {
-      quantity: this.product.quantity
-    }
-  },
-  methods: {
-    deleteProductFromCart() {
-      this.$emit('deleteProductFromCart')
     },
-    incQuntityProduct() {
-      this.quantity++
+    index: {
+      type: Number,
+      default() {
+        return 0
+      }
+    }
+  },
+  computed: {
+      ...mapGetters([
+        'CART',
+        'SUM_PRODUCT'
+      ])
+    },
+  methods: {
+    ...mapActions([
+        'DELETE_PRODUCT_FROM_CART',
+        'INCREMENT_QUANTITY_PRODUCT',
+        'DECREMENT_QUANTITY_PRODUCT',
+        'SET_QUANTITY_PRODUCT'
+    ]),
+    setQuantity(event) {
+      let quantity = +event.target.value
+      this.SET_QUANTITY_PRODUCT({quantity, index: this.index})
     }
   }
 }
@@ -79,6 +98,7 @@ export default {
 
   &__block-quantity {
     position: relative;
+    z-index: 2;
     border: 1px solid #cdcdcd;
     border-radius: 5px;
     width: 150px;
@@ -127,6 +147,11 @@ export default {
 
   &__delete {
     cursor: pointer;
+  }
+
+  &__quantity-decrement,
+  &__quantity-increment {
+    z-index: 3;
   }
 }
 

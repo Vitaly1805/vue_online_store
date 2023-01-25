@@ -1,6 +1,6 @@
 <template lang="">
   <div class="v-mini-cart">
-    <div class="v-mini-cart__list">
+      <div class="v-mini-cart__list">
       <vMiniCartItem
         v-for="(item, index) in CART"
         :key="item.id"
@@ -63,9 +63,7 @@ export default {
 .v-mini-cart {
   opacity: 0;
   visibility: hidden;
-  transition: all .5s ease-in-out;
   cursor: auto;
-  z-index: 2;
   color: #000;
   width: 300px;
   position: absolute;

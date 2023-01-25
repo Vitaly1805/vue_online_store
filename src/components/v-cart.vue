@@ -9,7 +9,7 @@
             v-for="(item, index) in CART"
             :key="item.id"
             :product="item"
-            @deleteProductFromCart="deleteProductFromCart(index)"
+            :index="index"
           />
         </div>
         <div class="v-cart__result"
@@ -31,7 +31,7 @@
 <script>
 
 import vCartItem from './v-cart-item.vue'
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
     components: {
@@ -42,14 +42,6 @@ export default {
         'CART',
         'SUM_CART'
       ])
-    },
-    methods: {
-      ...mapActions([
-        'DELETE_PRODUCT_FROM_CART'
-      ]),
-      deleteProductFromCart(index) {
-        this.DELETE_PRODUCT_FROM_CART(index)
-      }
     }
 }
 </script>
