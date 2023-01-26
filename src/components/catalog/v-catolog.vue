@@ -4,6 +4,13 @@
 				<div class="v-catalog__title _title">
 					Каталог
 				</div> 
+        <div class="v-catalog__view">
+          <vSelect 
+            :options="sortOptions"  
+            :selected="selectedSortOption"
+            @selectOption="selectSortOption"
+          />
+        </div>
 				<div class="v-catalog__list">
 					<vCatalogItem
 						v-for="product in PRODUCTS"
@@ -18,20 +25,44 @@
 <script>
 
 import vCatalogItem from './v-catalog-item.vue';
+import vSelect from '../select/v-select.vue'
 import { mapGetters, mapActions } from "vuex";
 
 export default {
     name: 'v-catalog',
     components: {
-        vCatalogItem
+        vCatalogItem,
+        vSelect
+    },
+    data() {
+      return {
+        sortOptions: [
+          {name: 'Без сортировки', value: '0', sort: this.SORT_PRODUCT_BY_START},
+          {name: 'Сначала дешевле', value: '1', sort: this.SORT_PRODUCT_BY_CHEAP},
+          {name: 'Сначала дороже', value: '2', sort: this.SORT_PRODUCT_BY_EXPENSIVE}
+        ],
+        selectedSortOption: {
+          name: 'Без сортировки', 
+          value: '0'
+        }
+      }
     },
     methods: {
       ...mapActions([
         'FETCH_PRODUCTS',
-        'ADD_PRODUCT_TO_CART'
+        'ADD_PRODUCT_TO_CART',
+        'SORT_PRODUCT_BY_CHEAP',
+        'SORT_PRODUCT_BY_EXPENSIVE',
+        'SORT_PRODUCT_BY_START'
       ]),
       addProductToCart(product) {
         this.ADD_PRODUCT_TO_CART(product)
+      },
+      selectSortOption(index) {
+        if (this.selectedSortOption !== this.sortOptions[index]) {
+          this.selectedSortOption = this.sortOptions[index]
+          this.selectedSortOption.sort()
+        }
       }
     },
     computed: {
@@ -53,6 +84,10 @@ export default {
 
   &__title {
     margin: 20px 0 0 0;
+  }
+
+  &__view {
+    display: flex;
   }
 }
 </style>

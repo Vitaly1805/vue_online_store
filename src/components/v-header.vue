@@ -17,7 +17,6 @@
       </router-link>
       <input class="v-header__search" type="text" placeholder="Поиск">
       <div class="v-header__cart" @click="toggleActiveMiniCart">
-        <span class="v-header__cart-icon"></span>
         <div class="v-header__cart-status">
           Корзина: {{ QUANTITY_CART }} товар
         </div>
