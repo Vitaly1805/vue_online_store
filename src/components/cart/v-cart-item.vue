@@ -12,7 +12,6 @@
         @click="DECREMENT_QUANTITY_PRODUCT(index)"  
       ></div>
       <input type="number" class="v-cart-item__quantity" 
-        onkeypress="return (event.charCode >= 48 && event.charCode <= 57 && /^\d{0,3}$/.test(this.value));"
         :value="product.quantity"
         @input="setQuantity"
         @blur="setQuantityToInput"
