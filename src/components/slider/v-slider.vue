@@ -1,29 +1,52 @@
 <template>
   <VueSlider 
-    v-model="value"
-    :interval="10" 
-    :width="200"
+    v-model="valueSlider"
+    :interval="interval"
+    :min="min"
+    :max="max"
+    tooltip="never"
+    :processStyle="processStyle" 
+    :width="width"
+    @change="changeValue"
   />
 </template>
 
 <script>
 import VueSlider from 'vue-3-slider-component'
-import { ref } from 'vue'
 
 export default {
   components: {
     VueSlider
   },
-  // data () {
-  //   return {
-  //     value: [0,100]
-  //   }
-  // }
-  setup() {
-    const value = ref([0, 100])
-    const width = 100
-    const marks = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-    return { value, marks, width}
+  props: {
+    value: {
+      type: [Number, Array]
+    },
+    processStyle: {
+      type: Object
+    },
+    interval: {
+      type: Number
+    },
+    min: {
+      type: Number
+    },
+    max: {
+      type: Number
+    },
+    width: {
+      type: [Number, String]
+    }
   },
+  computed: {
+    valueSlider() {
+      return this.value
+    }
+  },
+  methods: {
+    changeValue(value) {
+      this.$emit('changeValue', value)
+    }
+  }
 }
 </script>
