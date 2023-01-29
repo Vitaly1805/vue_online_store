@@ -4,9 +4,9 @@
     :interval="interval"
     :min="min"
     :max="max"
-    tooltip="never"
     :processStyle="processStyle" 
     :width="width"
+    tooltip="none"
     @change="changeValue"
   />
 </template>

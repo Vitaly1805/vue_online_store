@@ -5,7 +5,7 @@ import getters from './getters/getters'
 export default {
 	state:{
 		products: [],
-		startProducts: []
+		filteredProducts: []
   },
   mutations,
 	actions,

@@ -1,10 +1,7 @@
 <template>
     <div class="v-main-wrapper">
         <vHeader />
-        <keep-alive>
-          <router-view></router-view>
-        </keep-alive> 
-				<input type="text" v-model="title">
+        <router-view></router-view>
     </div>
 </template>
 
