@@ -7,6 +7,7 @@
     :processStyle="processStyle" 
     :width="width"
     tooltip="none"
+    @dragEnd="dragEndValue"
     @change="changeValue"
   />
 </template>
@@ -46,7 +47,10 @@ export default {
   methods: {
     changeValue(value) {
       this.$emit('changeValue', value)
-    }
+    },
+    dragEndValue(value) {
+      this.$emit('dragEndValue', value)
+    },
   }
 }
 </script>

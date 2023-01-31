@@ -36,7 +36,7 @@
 import vCatalogItem from './v-catalog-item.vue';
 import vSelect from '../select/v-select.vue'
 import vFilter from '../filter/v-filter.vue'
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 
 export default {
     name: 'v-catalog',
@@ -54,18 +54,21 @@ export default {
         ],
         selectedSortOption: {
           name: 'Без сортировки', 
-          value: '0'
+          value: '0',
+          sort: this.sortProductsByStart
         },
         products: []
       }
     },
     methods: {
       ...mapActions([
-        'FETCH_PRODUCTS',
-        'ADD_PRODUCT_TO_CART'
+        'FETCH_PRODUCTS'
+      ]),
+      ...mapMutations([
+        'SET_CART'
       ]),
       addProductToCart(product) {
-        this.ADD_PRODUCT_TO_CART(product)
+        this.SET_CART(product)
       },
       selectSortOption(index) {
         if (this.selectedSortOption !== this.sortOptions[index]) {
@@ -92,6 +95,7 @@ export default {
       },
       setProducts(products) {
         this.products = products
+        this.selectedSortOption.sort()
       }
     },
     computed: {

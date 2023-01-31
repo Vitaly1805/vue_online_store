@@ -25,11 +25,6 @@ export default {
       addProductToCart() {
         this.$emit('addProductToCart', this.product)
       }
-    },
-    data() {
-      return {
-        
-      }
     }
 }
 </script>

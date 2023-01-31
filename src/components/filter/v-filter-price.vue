@@ -25,7 +25,8 @@
       :max="sliderOptions.max"
       :interval="sliderOptions.interval"
       :width="sliderOptions.width"
-      @changeValue="filterProducts"
+      @changeValue="changeValues"
+      @dragEndValue="filterProducts"
     />
   </div>
 </template>
@@ -70,12 +71,14 @@ export default {
           this.sliderOptions.maxValue = max
         }
       },
-      filterProducts(values) {
+      filterProducts() {
+        this.$emit('filterProducts')
+      },
+      changeValues(values) {
         this.sliderOptions.minValue = values[0]
         this.sliderOptions.maxValue = values[1]
-
+        
         this.$emit('setRangePrice', {min: this.sliderOptions.minValue, max: this.sliderOptions.maxValue})
-        this.$emit('filterProducts')
       },
       setPrice(event, valueProperty) {
         const value = +event.target.value

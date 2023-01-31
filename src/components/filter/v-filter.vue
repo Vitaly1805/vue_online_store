@@ -5,12 +5,16 @@
         @setRangePrice="setRangePrice"
         @filterProducts="filterProducts"
       />
+      <vManufacturer
+
+      />
     </div>
   </div>
 </template>
 <script>
 
 import vSliderPrice from './v-filter-price.vue'
+import vManufacturer from './v-filter-manufacturer.vue'
 import { mapGetters } from "vuex";
 
 export default {
@@ -24,7 +28,8 @@ export default {
       }
     },
     components: {
-      vSliderPrice
+      vSliderPrice,
+      vManufacturer
     },
     data() {
       return {
@@ -33,9 +38,10 @@ export default {
     },
     methods: {
       filterProducts() {
-        const filteredProducts = this.PRODUCTS.filter(el => {
-          return el.price >= this.filterOptions.min &&
-                 el.price <= this.filterOptions.max
+        const filteredProducts = this.PRODUCTS.filter(product => {
+          return product.price >= this.filterOptions.min &&
+                 product.price <= this.filterOptions.max &&
+                 this.isManufacturer(product)
         })
 
         this.$emit('setProducts', filteredProducts)
@@ -43,6 +49,19 @@ export default {
       setRangePrice({min, max}) {
         this.filterOptions.min = min
         this.filterOptions.max = max
+      },
+      isManufacturer(product) {
+        if(this.filterManufacturers.length > 0) {
+          this.filterManufacturers.forEach(el => {
+            if(el.value === product.manufacturer) {
+              return true
+            }
+          })
+
+          return false
+        } 
+
+        return true
       }
     },
     computed: {
@@ -57,6 +76,12 @@ export default {
   width: 300px;
   border: 1px solid #cdcdcd;
   position: relative;
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+  }
 
   &__button {
     margin: 20px auto 0 auto;

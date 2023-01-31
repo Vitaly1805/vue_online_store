@@ -1,8 +1,12 @@
 {
 	"products": [
-		{"id": 1, "name": "Холодильник Саратов 550", "price": 12690, "img": "refrigerators/refrigerator-1.jpg", "quantity": 20},
-		{"id": 2, "name": "Холодильник Саратов 549", "price": 14965, "img": "refrigerators/refrigerator-2.jpg", "quantity": 2},
-		{"id": 3, "name": "Холодильник Саратов 467 (КШ-210/25)", "price": 17457, "img": "refrigerators/refrigerator-3.jpg", "quantity": 3},
-		{"id": 4, "name": "Холодильник Бирюса M 107", "price": 14560, "img": "refrigerators/refrigerator-4.jpg", "quantity": 4}
-	]
+		{"id": 1, "name": "Холодильник Саратов 550", "price": 12690, "img": "refrigerators/refrigerator-1.jpg", "quantity": 20, "manufacturer": "Саратов"},
+		{"id": 2, "name": "Холодильник Саратов 549", "price": 14965, "img": "refrigerators/refrigerator-2.jpg", "quantity": 2, "manufacturer": "Саратов"},
+		{"id": 3, "name": "Холодильник Саратов 467 (КШ-210/25)", "price": 17457, "img": "refrigerators/refrigerator-3.jpg", "quantity": 3, "manufacturer": "Саратов"},
+		{"id": 4, "name": "Холодильник Бирюса M 107", "price": 14560, "img": "refrigerators/refrigerator-4.jpg", "quantity": 4, "manufacturer": "Бирюса"}
+	],
+  "manufacturers": [
+    {"id": 1, "name": "Саратов"},
+    {"id": 2, "name": "Бирюса"}
+  ]
 }

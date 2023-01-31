@@ -30,7 +30,7 @@
   </div>
 </template>
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'v-cart-item',
@@ -55,7 +55,7 @@ export default {
       ])
     },
   methods: {
-    ...mapActions([
+    ...mapMutations([
         'DELETE_PRODUCT_FROM_CART',
         'INCREMENT_QUANTITY_PRODUCT',
         'DECREMENT_QUANTITY_PRODUCT',
