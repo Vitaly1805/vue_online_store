@@ -23,7 +23,9 @@ export default {
     methods: {
       ...mapActions(['FETCH_MANUFACTURERS']),
       filterProducts(data) {
-        console.log(data)
+        if(data.fl) {
+          this.$emit('addManufacturer', data.value)
+        }
       }
     },
     computed: {

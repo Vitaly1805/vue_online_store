@@ -6,7 +6,7 @@
         @filterProducts="filterProducts"
       />
       <vManufacturer
-
+        @addManufacturer="addManufacturer"
       />
     </div>
   </div>
@@ -33,7 +33,8 @@ export default {
     },
     data() {
       return {
-        filterOptions: {}
+        filterOptions: {},
+        manufacturers: []
       }
     },
     methods: {
@@ -51,9 +52,9 @@ export default {
         this.filterOptions.max = max
       },
       isManufacturer(product) {
-        if(this.filterManufacturers.length > 0) {
-          this.filterManufacturers.forEach(el => {
-            if(el.value === product.manufacturer) {
+        if(this.manufacturers.length > 0) {
+          this.manufacturers.forEach(manufacturer => {
+            if(manufacturer === product.manufacturer) {
               return true
             }
           })
@@ -62,6 +63,10 @@ export default {
         } 
 
         return true
+      },
+      addManufacturer(manufacturer) {
+        this.manufacturers.push(manufacturer)
+        this.filterProducts()
       }
     },
     computed: {
