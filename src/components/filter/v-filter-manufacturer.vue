@@ -6,7 +6,7 @@
       :id="manufacturer.id"
       :value="manufacturer.name"
       :label="manufacturer.name"
-      @SendFl="filterProducts"
+      @SendFl="changeManufacturers"
     />
   </div>
 </template>
@@ -20,12 +20,22 @@ export default {
     components: {
       vCheckbox,
     },
+    data() {
+      return {
+        manufacturers: []
+      }
+    },
     methods: {
       ...mapActions(['FETCH_MANUFACTURERS']),
-      filterProducts(data) {
+      changeManufacturers(data) {
         if(data.fl) {
-          this.$emit('addManufacturer', data.value)
+          this.manufacturers.push(data.value)
+        } else if(this.manufacturers.includes(data.value)) {
+          const index = this.manufacturers.indexOf()
+          this.manufacturers.splice(index, 1);
         }
+
+        this.$emit('changeManufacturers', this.manufacturers)
       }
     },
     computed: {

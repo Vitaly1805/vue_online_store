@@ -6,7 +6,7 @@
         @filterProducts="filterProducts"
       />
       <vManufacturer
-        @addManufacturer="addManufacturer"
+        @changeManufacturers="changeManufacturers"
       />
     </div>
   </div>
@@ -44,7 +44,6 @@ export default {
                  product.price <= this.filterOptions.max &&
                  this.isManufacturer(product)
         })
-
         this.$emit('setProducts', filteredProducts)
       },
       setRangePrice({min, max}) {
@@ -52,20 +51,22 @@ export default {
         this.filterOptions.max = max
       },
       isManufacturer(product) {
+        let $result = true
+
         if(this.manufacturers.length > 0) {
+          $result = false
+
           this.manufacturers.forEach(manufacturer => {
             if(manufacturer === product.manufacturer) {
-              return true
+              $result = true
             }
           })
-
-          return false
         } 
 
-        return true
+        return $result
       },
-      addManufacturer(manufacturer) {
-        this.manufacturers.push(manufacturer)
+      changeManufacturers(manufacturers) {
+        this.manufacturers = manufacturers
         this.filterProducts()
       }
     },

@@ -69,6 +69,8 @@ export default {
           this.sliderOptions.minValue = min
           this.sliderOptions.max = max 
           this.sliderOptions.maxValue = max
+
+          this.$emit('setRangePrice', {min: this.sliderOptions.minValue, max: this.sliderOptions.maxValue})
         }
       },
       filterProducts() {

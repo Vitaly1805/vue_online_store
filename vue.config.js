@@ -7,5 +7,8 @@ module.exports = defineConfig({
         additionalData: `@import "~@/assets/style/style.scss";`
       },
     }
+  },
+  configureWebpack: {
+    devtool: 'source-map'
   }
 })
