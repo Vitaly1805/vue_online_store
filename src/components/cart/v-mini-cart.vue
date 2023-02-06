@@ -2,23 +2,24 @@
   <div class="v-mini-cart">
       <div class="v-mini-cart__list">
       <vMiniCartItem
-        v-for="(item, index) in CART"
+        v-for="item in CART"
         :key="item.id"
         :product="item"
-        @deleteProductFromCart="deleteProductFromCart(index)"
       />
     </div>
     <div class="v-mini-cart__bottom">
       <div class="v-mini-cart__sum">
         Итого: {{ SUM_CART }}
       </div>
-      <div class="v-mini-cart__buttons">
+      <div class="v-mini-cart__buttons"
+      
+        >
         <router-link to="/cart">
-          <button class="v-mini-cart__button _btn-mini">
+          <button class="v-mini-cart__button _btn-mini" @click.stop="hiddenMiniCart">
             Корзина
           </button>  
         </router-link>
-        <button class="v-mini-cart__button v-mini-cart__button_close _btn-mini" @click.stop="toggleActiveMiniCart">
+        <button class="v-mini-cart__button v-mini-cart__button_close _btn-mini" @click.stop="hiddenMiniCart">
             Закрыть
         </button>  
       </div>
@@ -28,7 +29,7 @@
 <script>
 
 import vMiniCartItem from './v-mini-cart-item.vue'
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'v-mini-cart',
@@ -39,22 +40,14 @@ export default {
     ...mapGetters([
       'CART',
       'SUM_CART'
-    ]),
-    sumPrice() {
-      return this.CART.reduce((acc, el) => {
-        return (acc + el.price) * el.quantity
-      }, 0 )
-    }
+    ])
   },
   methods: {
-    ...mapActions([
-      'DELETE_PRODUCT_FROM_CART'
-    ]),
-    deleteProductFromCart(index) {
-      this.DELETE_PRODUCT_FROM_CART(index)
+    hiddenMiniCart() {
+      this.$emit('hiddenMiniCart')
     },
-    toggleActiveMiniCart(event) {
-      this.$emit('toggleActiveMiniCart', {target: event.target})
+    test(event) {
+      console.log(event.target)
     }
   }
 }

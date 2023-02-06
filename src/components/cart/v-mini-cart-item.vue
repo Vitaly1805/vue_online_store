@@ -24,11 +24,6 @@ export default {
         return {}
       }
     }
-  },
-  methods: {
-    deleteProductFromCart() {
-      this.$emit('deleteProductFromCart')
-    }
   }
 }
 </script>

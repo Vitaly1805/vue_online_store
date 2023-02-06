@@ -16,13 +16,13 @@
       </div>  
       </router-link>
       <input class="v-header__search" type="text" placeholder="Поиск">
-      <div class="v-header__cart" @click="toggleActiveMiniCart">
+      <div class="v-header__cart" @click="showMiniCart">
         <div class="v-header__cart-status">
           Корзина: {{ QUANTITY_CART }} товар
         </div>
         <vMiniCart 
           :class="{ active: isActive }" 
-          @toggleActiveMiniCart="toggleActiveMiniCart"
+          @hiddenMiniCart="hiddenMiniCart"
         />
       </div>
     </div>
@@ -51,17 +51,19 @@ export default {
     ])
   },
   methods: {
-    toggleActiveMiniCart(event) {
-      if(event.target.classList.contains('v-mini-cart__button_close')) {
-        event.target.disabled = true
-
-        setTimeout(() => {
-          event.target.disabled = false
-        }, 500)
-      }
-
-      this.isActive = !this.isActive && this.CART.length ? true : false
+    hiddenMiniCart() {
+      this.isActive = false
+    },
+    showMiniCart() {
+      this.isActive = true
     }
+  },
+  mounted() {
+    document.addEventListener('click', (event) => {
+      if(!event.target.closest('.v-header__cart')) {
+        this.isActive = false
+      }
+    })
   }
 }
 
