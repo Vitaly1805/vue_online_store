@@ -7,7 +7,7 @@
     <div class="v-cart-item__price">
       {{product.price}} руб.
     </div>
-    <div class="v-cart-item__block-quantity">
+    <!-- <div class="v-cart-item__block-quantity">
       <div class="v-cart-item__quantity-decrement" 
         @click="DECREMENT_QUANTITY_PRODUCT(index)"  
       ></div>
@@ -20,7 +20,12 @@
         @click="INCREMENT_QUANTITY_PRODUCT(index)"  
       ></div>
       <span></span>
-    </div>
+    </div> -->
+    <vQuantityProduct
+        :product="product"
+        :quantity="product.quantity"
+        @setQuantity="setQuantity"
+    />
     <div class="v-cart-item__sum">
       {{SUM_PRODUCT(index)}} руб.
     </div>
@@ -31,9 +36,13 @@
 </template>
 <script>
 import { mapGetters, mapMutations } from 'vuex';
+import vQuantityProduct from '../quantity-product/v-quantity-product.vue'
 
 export default {
   name: 'v-cart-item',
+  components: {
+      vQuantityProduct
+  },
   props: {
     product: {
       type: Object,
@@ -57,13 +66,11 @@ export default {
   methods: {
     ...mapMutations([
         'DELETE_PRODUCT_FROM_CART',
-        'INCREMENT_QUANTITY_PRODUCT',
-        'DECREMENT_QUANTITY_PRODUCT',
-        'SET_QUANTITY_PRODUCT'
+        'SET_CART',
+        'SET_QUANTITY'
     ]),
-    setQuantity(event) {
-      let quantity = +event.target.value
-      this.SET_QUANTITY_PRODUCT({quantity, index: this.index})
+    setQuantity(quantity) {
+      this.SET_QUANTITY({product: this.product, quantity})
     },
     setQuantityToInput(event) {
       if(!event.target.value || event.target.value === '0') {
@@ -93,70 +100,9 @@ export default {
   &__name {
     text-align: start;
   }
-
-  &__sum {
-
-  }
-
-  &__price {
-  }
-
-  &__block-quantity {
-    position: relative;
-    z-index: 2;
-    border: 1px solid #cdcdcd;
-    border-radius: 5px;
-    width: 150px;
-    display: flex;
-    justify-content: center;
-    padding: 1px;
-
-    div {
-      width: 20px;
-      cursor: pointer;
-    }
-
-    span {
-      left: 5px;
-    }
-
-    &::before,
-    &::after {
-      content: '';
-      right: 5px;
-    }
-
-    &::before,
-    &::after,
-    span {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      height: 2px;
-      width: 10px;
-      background: #000;
-    }
-
-    &::after {
-      height: 1.5px;
-      transform: translateY(-50%) rotate(90deg);
-    }
-  }
-
-  &__quantity {
-    padding: 5px;
-    width: 100%;
-    text-align: center;
-  }
-
+  
   &__delete {
     cursor: pointer;
-  }
-
-  &__quantity-decrement,
-  &__quantity-increment {
-    z-index: 3;
   }
 }
 

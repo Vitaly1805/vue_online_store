@@ -1,29 +1,61 @@
 <template>
     <div class="v-catalog-item">
-			<img class="v-catalog-item__img" :src=" require(`../../assets/img/${product.img}`) " alt=""> 
+      <div class="v-catalog-item__img-block" @click="showModal()">
+        <img class="v-catalog-item__img" :src=" require(`../../assets/img/${product.img}`) " alt=""> 
+      </div>
       <div class="v-catalog-item__info">
-        <p class="v-catalog-item__title">{{product.name}}</p>
+        <p 
+          class="v-catalog-item__title"
+          @click="showModal()" 
+        >{{product.name}}
+        </p>
         <p class="v-catalog-item__price">{{product.price}}</p>
       </div>
       <button class="v-catalog-item__button _btn" @click="addProductToCart">Добавить</button>
+      <vCardProduct
+        v-if="isShow"
+        :product="product"
+        :index="index"
+        @closeModal="isShow = false" 
+      />
     </div>
 </template>
 
 <script>
 
+import vCardProduct from './v-card-product.vue';
+
 export default {
     name: "v-catalog-item",
+    components: {
+      vCardProduct
+    },
+    data() {
+      return {
+        isShow: false
+      }
+    },
 		props: {
 			product: {
 				type: Object,
 				default() {
 					return {}
 				}
-			}
+			},
+      index: {
+        type: Number,
+        default() {
+          return 0
+        }
+      }
 		},
     methods: {
       addProductToCart() {
         this.$emit('addProductToCart', this.product)
+      },
+      showModal() {
+        document.body.classList.toggle('lock')
+        this.isShow = !this.isShow
       }
     }
 }
@@ -54,6 +86,11 @@ export default {
         object-fit: contain;
 			}
 
+      &__img-block {
+        cursor: pointer;
+        width: 100%;
+      }
+
       &__info {
         display: flex;
         flex-direction: column;
@@ -63,6 +100,11 @@ export default {
       &__title {
         margin: 10px 0;
         font-size: .9em;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
 
       &__price {

@@ -19,26 +19,10 @@ export default {
   DELETE_PRODUCT_FROM_CART (state, index) {
     state.cart.splice(index, 1)
   },
-  INCREMENT_QUANTITY_PRODUCT (state, index) {
-    state.cart[index].quantity++
-  },
-  DECREMENT_QUANTITY_PRODUCT(state, index) {
-    let product = state.cart[index]
-
-    if(product.quantity > 1) {
-      product.quantity--
-    } else {
-      product.quantity = 1
-    }
-  },
-  SET_QUANTITY_PRODUCT (state, info) {
-    let quantity = info.quantity
-    let product = state.cart[info.index]
-
-    if(quantity > 0) {
-      product.quantity = info.quantity
-    } else {
-      product.quantity = 1
+  SET_QUANTITY(state, data) {
+    if(state.cart.includes(data.product)) {
+      const index = state.cart.indexOf(data.product)
+      state.cart[index].quantity = data.quantity
     }
   }
 }

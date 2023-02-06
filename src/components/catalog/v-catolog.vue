@@ -21,9 +21,10 @@
         </div>
         <div class="v-catalog__list">
           <vCatalogItem
-            v-for="product in products"
+            v-for="(product, index) in products"
             :key="product.id"
             :product="product"
+            :index="index"
             @addProductToCart="addProductToCart"
           />
         </div>
