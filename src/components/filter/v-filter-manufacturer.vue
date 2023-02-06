@@ -31,7 +31,7 @@ export default {
         if(data.fl) {
           this.manufacturers.push(data.value)
         } else if(this.manufacturers.includes(data.value)) {
-          const index = this.manufacturers.indexOf()
+          const index = this.manufacturers.indexOf(data.value)
           this.manufacturers.splice(index, 1);
         }
 
