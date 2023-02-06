@@ -136,14 +136,13 @@ export default {
     }
 
     &-body {
-      padding: 0 10px;
+      padding: 10px;
       display: none;
     }
   }
 
   &__subtitle {
     cursor: pointer;
-    margin: 0 0 10px 0;
     padding: 10px;
     font-size: .9em;
     text-align: left;
