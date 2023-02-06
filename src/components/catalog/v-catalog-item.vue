@@ -1,12 +1,12 @@
 <template>
     <div class="v-catalog-item">
-      <div class="v-catalog-item__img-block" @click="showModal()">
+      <div class="v-catalog-item__img-block" @click="toggleModal">
         <img class="v-catalog-item__img" :src=" require(`../../assets/img/${product.img}`) " alt=""> 
       </div>
       <div class="v-catalog-item__info">
         <p 
           class="v-catalog-item__title"
-          @click="showModal()" 
+          @click="toggleModal" 
         >{{product.name}}
         </p>
         <p class="v-catalog-item__price">{{product.price}}</p>
@@ -16,7 +16,7 @@
         v-if="isShow"
         :product="product"
         :index="index"
-        @closeModal="isShow = false" 
+        @closeModal="toggleModal" 
       />
     </div>
 </template>
@@ -53,7 +53,7 @@ export default {
       addProductToCart() {
         this.$emit('addProductToCart', this.product)
       },
-      showModal() {
+      toggleModal() {
         document.body.classList.toggle('lock')
         this.isShow = !this.isShow
       }

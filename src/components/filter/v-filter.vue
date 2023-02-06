@@ -1,6 +1,9 @@
 <template>
   <div class="v-filter">
     <div class="v-filter__body">
+      <div class="v-filter__title">
+        Фильтры
+      </div>
       <div class="v-filter__list">
         <div class="v-filter__item v-filter__item_active">
           <div 
@@ -103,8 +106,8 @@ export default {
 
 <style lang="scss">
 .v-filter {
+  margin: 10px 0 0 0;
   width: 300px;
-  border: 1px solid #cdcdcd;
   position: relative;
 
   &__body {
@@ -114,6 +117,10 @@ export default {
 
   &__button {
     margin: 20px auto 0 auto;
+  }
+
+  &__list {
+    border: 1px solid #cdcdcd;
   }
 
   &__item {
@@ -169,6 +176,12 @@ export default {
       transform: rotate(-45deg);
       top: calc(50% + 2px);
     }
+  }
+
+  &__title {
+    text-align: left;
+    margin: 0 0 10px 0;
+    font-weight: 600;
   }
 }
 
