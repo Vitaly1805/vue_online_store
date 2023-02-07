@@ -4,9 +4,9 @@ import getters from './getters/getters'
 
 export default {
   state:{
-		cart: []
+		catalog: []
   },
   mutations,
-	actions,
-	getters
+  actions,
+  getters
 }

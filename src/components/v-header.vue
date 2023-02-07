@@ -15,7 +15,9 @@
         <span class="v-header__arrow"></span>
       </div>  
       </router-link>
-      <input class="v-header__search" type="text" placeholder="Поиск">
+      <VSearch
+        
+      />
       <div class="v-header__cart" @click="showMiniCart">
         <div class="v-header__cart-status">
           Корзина: {{ QUANTITY_CART }} товар
@@ -32,6 +34,7 @@
 <script>
 
 import vMiniCart from './cart/v-mini-cart.vue'
+import VSearch from './search/v-search.vue';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -42,7 +45,8 @@ export default {
     }
   },
   components: {
-    vMiniCart
+    vMiniCart,
+    VSearch
   },
   computed: {
     ...mapGetters([
@@ -168,18 +172,6 @@ export default {
       top: 5px;
       left: 6px;
       transform: rotate(135deg);
-    }
-  }
-
-  &__search {
-    width: 100%;
-    padding: 8px 10px;
-    border-radius: 20px;
-    margin: 0 10px;
-    background: #cdcdcd;
-
-    &:focus {
-      background: #fff;
     }
   }
 

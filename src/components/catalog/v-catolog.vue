@@ -21,7 +21,7 @@
         </div>
         <div class="v-catalog__list">
           <vCatalogItem
-            v-for="(product, index) in products"
+            v-for="(product, index) in CATALOG"
             :key="product.id"
             :product="product"
             :index="index"
@@ -73,7 +73,10 @@ export default {
         'FETCH_PRODUCTS'
       ]),
       ...mapMutations([
-        'SET_CART'
+        'SET_CART',
+        'SET_CATALOG',
+        'SORT_CATALOG_BY_CHEAP',
+        'SORT_CATALOG_BY_EXPANSIVE'
       ]),
       addProductToCart(product) {
         this.SET_CART(product)
@@ -85,35 +88,36 @@ export default {
         }
       },
       sortProductsByStart() {
-        if(this.products.length > 0) {
-          this.products = this.PRODUCTS.filter(el => this.products.includes(el))
+        if(this.CATALOG.length > 0) {
+          const products = this.PRODUCTS.filter(el => this.CATALOG.includes(el))
+          
+          this.SET_CATALOG(products)
           this.isMessage = false
         } else {
           this.isMessage = true
         }
       },
       sortProductsByCheap() {
-        this.products.sort((a, b) => {
-          return a.price - b.price
-        })
+        this.SORT_CATALOG_BY_CHEAP()
       },
       sortProductsByExpensive() {
-        this.products.sort((a, b) => {
-          return b.price - a.price
-        })
+        this.SORT_CATALOG_BY_EXPANSIVE()
       },
       setProducts(products) {
-        this.products = products
+        this.SET_CATALOG(products)
         this.selectedSortOption.sort()
       }
     },
     computed: {
-      ...mapGetters(["PRODUCTS"])
+      ...mapGetters([
+        "PRODUCTS",
+        "CATALOG"
+      ])
     },
     created() {
       this.FETCH_PRODUCTS()
         .then(() => {
-          this.products = this.PRODUCTS
+          this.SET_CATALOG(this.PRODUCTS.slice(0))
         })
     }
 }
