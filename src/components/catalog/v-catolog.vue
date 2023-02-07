@@ -28,6 +28,12 @@
             @addProductToCart="addProductToCart"
           />
         </div>
+        <div
+            class="v-catalog__message"
+            v-show="isMessage"
+          >
+            По вашему запросу ничего не найдено
+          </div>
       </div>
     </div>
   </div>
@@ -58,7 +64,8 @@ export default {
           value: '0',
           sort: this.sortProductsByStart
         },
-        products: []
+        products: [],
+        isMessage: false
       }
     },
     methods: {
@@ -80,8 +87,9 @@ export default {
       sortProductsByStart() {
         if(this.products.length > 0) {
           this.products = this.PRODUCTS.filter(el => this.products.includes(el))
+          this.isMessage = false
         } else {
-          this.products = this.PRODUCTS.slice(0)
+          this.isMessage = true
         }
       },
       sortProductsByCheap() {
@@ -105,7 +113,7 @@ export default {
     created() {
       this.FETCH_PRODUCTS()
         .then(() => {
-          this.sortProductsByStart()
+          this.products = this.PRODUCTS
         })
     }
 }
@@ -128,6 +136,11 @@ export default {
   &__view {
     display: flex;
     justify-content: space-between;
+  }
+
+  &__message {
+    font-size: 1.1em;
+    font-weight: 600;
   }
 }
 </style>
