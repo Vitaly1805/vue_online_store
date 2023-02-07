@@ -68,6 +68,7 @@ export default {
                  product.price <= this.filterOptions.max &&
                  this.isManufacturer(product)
         })
+
         this.$emit('setProducts', filteredProducts)
       },
       setRangePrice({min, max}) {
