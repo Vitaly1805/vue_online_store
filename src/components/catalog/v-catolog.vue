@@ -140,7 +140,7 @@ export default {
 
   &__message {
     font-size: 1.1em;
-    font-weight: 600;
+    font-weight: 600; 
   }
 }
 </style>
