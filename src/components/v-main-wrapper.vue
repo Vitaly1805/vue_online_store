@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import vHeader from './v-header.vue'
+import vHeader from './header/v-header.vue'
 
 export default {
     name: 'v-main-wrapper',

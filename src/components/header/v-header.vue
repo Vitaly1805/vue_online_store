@@ -2,7 +2,7 @@
   <div class="v-header">
     <div class="v-header__body _container">
       <router-link to="/">
-        <img src="../assets/img/logo.png" alt="" class="v-header__logo">
+        <img src="../../assets/img/logo.png" alt="" class="v-header__logo">
       </router-link>
       <router-link to="/">
         <div class="v-header__products">
@@ -33,8 +33,8 @@
 
 <script>
 
-import vMiniCart from './cart/v-mini-cart.vue'
-import VSearch from './search/v-search.vue';
+import vMiniCart from '../cart/v-mini-cart.vue'
+import VSearch from '../search/v-search.vue';
 import { mapGetters } from 'vuex';
 
 export default {

@@ -1,7 +1,8 @@
 <template>
-  <div class="v-mini-search">
+  <div 
+    class="v-mini-search">
     <VMiniSearchItem
-      v-for="product in CATALOG"
+      v-for="product in products"
       :key=product.id
       :product=product
     />
@@ -24,10 +25,23 @@ export default {
       default() {
         return ''
       }
+    },
+    products: {
+      type: Object,
+      default() {
+        return {}
+      }
     }
   },
   computed: {
     ...mapGetters(['CATALOG'])
+  },
+  mounted() {
+    document.addEventListener('click', (event) => {
+      if(!event.target.closest('.v-mini-search')) {
+        this.$emit('clearSearch')
+      }
+    })
   }
 }
 
@@ -35,9 +49,11 @@ export default {
 
 <style lang="scss">
 .v-mini-search {
-  background: red;
+  background: #fff;
+  box-shadow: 0px -1px 8px 5px rgba(34, 60, 80, 0.2);
+  overflow-y: auto;
   width: 320px;
-  height: 100px;
+  max-height: 220px;
   position: absolute;
   top: 49px;
   left: 0;

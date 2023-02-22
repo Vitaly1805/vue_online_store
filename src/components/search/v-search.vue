@@ -5,10 +5,13 @@
             type="text" 
             placeholder="Поиск"
             @keydown.enter.stop="searchProducts"
+            @keydown.stop="searchMiniProducts"
             v-model="value"
         >
         <vMiniSearch
             :value="value"
+            :products="miniProducts"
+            @clearSearch="clearMiniSearch"
         />
     </div>
     </template>
@@ -22,7 +25,8 @@ export default {
     name: "v-search",
     data() {
         return {
-            value: ''
+            value: '',
+            miniProducts: []
         }
     },
     components: {
@@ -33,13 +37,25 @@ export default {
         searchProducts(event) {
             this.value = event.target.value.trim().toLowerCase()
             event.target.blur()
-            event.target.value = ''
 
-            const products = this.PRODUCTS.filter(product => {
-                return product.name.toLowerCase().includes(this.value)
-            })
+            const products = this.filterProducts()
 
             this.SET_CATALOG(products)
+        },
+        searchMiniProducts(event) {
+            setTimeout(() => {
+                if(event.code !== 'Enter' && this.value.length > 3) {
+                    this.miniProducts = this.filterProducts().slice(0, 11)
+                } else {
+                    this.miniProducts = []
+                }
+            })
+        },
+        filterProducts() {
+            return this.PRODUCTS.filter(product => product.name.toLowerCase().includes(this.value))
+        },
+        clearMiniSearch() {
+            this.miniProducts = []
         }
     },
     computed: {
