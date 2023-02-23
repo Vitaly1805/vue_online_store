@@ -32,10 +32,14 @@
   cursor: pointer;
 
   &:hover {
-    background: #1C1C1C;
+    background: #212121;
   }
 }
 
 .lock {
   overflow: hidden;
+
+  ._container {
+    padding-right: 47px;
+  }
 }

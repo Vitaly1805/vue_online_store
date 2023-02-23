@@ -1,14 +1,22 @@
 <template>
     <div class="v-catalog-item">
-      <div class="v-catalog-item__img-block" @click="toggleModal">
-        <img class="v-catalog-item__img" :src=" require(`../../assets/img/${product.img}`) " alt=""> 
+      <div class="v-catalog-item__img-block">
+        <router-link class="v-catalog-item__route" :to="`/product/${product.id}`">
+          <img class="v-catalog-item__img" :src=" require(`../../assets/img/${product.img}`) " alt=""> 
+        </router-link>
+        <div 
+          class="v-catalog-item__fast-watch _btn"
+          @click.stop="toggleModal">
+          Быстрый просмотр
+        </div>
       </div>
       <div class="v-catalog-item__info">
-        <p 
-          class="v-catalog-item__title"
-          @click="toggleModal" 
-        >{{product.name}}
-        </p>
+        <router-link class="v-catalog-item__route" :to="`/product/${product.id}`">
+          <p 
+            class="v-catalog-item__title"
+          >{{product.name}}
+          </p>
+        </router-link>
         <p class="v-catalog-item__price">{{product.price}}</p>
       </div>
       <button class="v-catalog-item__button _btn" @click="addProductToCart">Добавить</button>
@@ -74,6 +82,10 @@ export default {
 
       &:hover {
         box-shadow: 0px 0px 10px 2px rgba(34, 60, 80, 0.2);
+        
+        .v-catalog-item__fast-watch {
+          opacity: 1;
+        }
       }
 
 			&:nth-child(3n) {
@@ -89,6 +101,16 @@ export default {
       &__img-block {
         cursor: pointer;
         width: 100%;
+        position: relative;
+      }
+
+      &__fast-watch {
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: all .4s ease-in-out !important;
       }
 
       &__info {
@@ -119,6 +141,12 @@ export default {
           position: absolute;
           right: -15px;
         }
+      }
+
+      &__route {
+        width: 100%;
+        height: 100%;
+        display: block;
       }
     }
 </style>

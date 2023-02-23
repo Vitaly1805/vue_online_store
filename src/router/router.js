@@ -6,7 +6,7 @@ import vProduct from '../pages/product/v-product.vue'
 const routes = [
   { path: '/', name: 'catalog', component: vCatalog },
   { path: '/cart', name: 'cart', component: vCart },
-  { path: '/product', name: 'product', component: vProduct }
+  { path: '/product/:id', name: 'product', component: vProduct, props: true }
 ]
 
 export let router = createRouter({
