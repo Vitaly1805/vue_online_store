@@ -34,6 +34,8 @@ export default {
 .v-mini-search-item {
   cursor: pointer;
   transition: all .3s ease-in-out;
+  height: 80px;
+  border-bottom: 1px solid #f6f6f6;
 
   &:hover {
     background: #f5f5f5;

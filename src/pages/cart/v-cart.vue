@@ -30,7 +30,7 @@
 </template>
 <script>
 
-import vCartItem from './v-cart-item.vue'
+import vCartItem from '../../components/cart/v-cart-item.vue'
 import { mapGetters } from 'vuex';
 
 export default {

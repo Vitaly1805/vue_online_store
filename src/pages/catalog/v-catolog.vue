@@ -40,9 +40,9 @@
 </template>
 <script>
 
-import vCatalogItem from './v-catalog-item.vue';
-import vSelect from '../select/v-select.vue'
-import vFilter from '../filter/v-filter.vue'
+import vCatalogItem from '../../components/catalog/v-catalog-item.vue';
+import vSelect from '../../components/select/v-select.vue'
+import vFilter from '../../components/filter/v-filter.vue'
 import { mapGetters, mapActions, mapMutations } from "vuex";
 
 export default {
