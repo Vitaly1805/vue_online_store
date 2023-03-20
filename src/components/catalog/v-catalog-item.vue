@@ -2,7 +2,7 @@
     <div class="v-catalog-item">
       <div class="v-catalog-item__img-block">
         <router-link class="v-catalog-item__route" :to="`/product/${product.id}`">
-          <img class="v-catalog-item__img" :src=" require(`../../assets/img/${product.img}`) " alt=""> 
+          <img class="v-catalog-item__img" :src=" require(`../../assets/img/${product.miniImg}`) " alt=""> 
         </router-link>
         <div 
           class="v-catalog-item__fast-watch _btn"
@@ -30,8 +30,9 @@
 </template>
 
 <script>
-
+import { mapMutations } from 'vuex';
 import vCardProduct from './v-card-product.vue';
+
 
 export default {
     name: "v-catalog-item",
@@ -58,8 +59,9 @@ export default {
       }
 		},
     methods: {
+      ...mapMutations(['SET_CART']),
       addProductToCart() {
-        this.$emit('addProductToCart', this.product)
+        this.SET_CART({product: this.product})
       },
       toggleModal() {
         document.body.classList.toggle('lock')

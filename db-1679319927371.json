@@ -1,0 +1,50 @@
+{
+  "products": [
+    {
+      "id": 17324,
+      "name": "Холодильник Саратов 550",
+      "price": 12690,
+      "miniImg": "refrigerators/mini/refrigerator-1.jpg",
+      "bigImg": "refrigerators/big/refrigerator-1.jpg",
+      "quantity": 20,
+      "manufacturer": "Саратов"
+    },
+    {
+      "id": 17223,
+      "name": "Холодильник Саратов 549",
+      "price": 14965,
+      "miniImg": "refrigerators/mini/refrigerator-2.jpg",
+      "bigImg": "refrigerators/big/refrigerator-2.jpg",
+      "quantity": 2,
+      "manufacturer": "Саратов"
+    },
+    {
+      "id": 17235,
+      "name": "Холодильник Саратов 467 (КШ-210/25)",
+      "price": 17457,
+      "miniImg": "refrigerators/mini/refrigerator-3.jpg",
+      "bigImg": "refrigerators/big/refrigerator-3.jpg",
+      "quantity": 3,
+      "manufacturer": "Саратов"
+    },
+    {
+      "id": 17355,
+      "name": "Холодильник Бирюса M 107",
+      "price": 14560,
+      "miniImg": "refrigerators/mini/refrigerator-4.jpg",
+      "bigImg": "refrigerators/big/refrigerator-4.jpg",
+      "quantity": 4,
+      "manufacturer": "Бирюса"
+    }
+  ],
+  "manufacturers": [
+    {
+      "id": 1,
+      "name": "Саратов"
+    },
+    {
+      "id": 2,
+      "name": "Бирюса"
+    }
+  ]
+}

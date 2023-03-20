@@ -1,7 +1,7 @@
 <template>
   <div class="v-mini-search-item">
     <div class="v-mini-search-item__body">
-      <img :src=" require(`../../assets/img/${product.img}`) " alt="" class="v-mini-search-item__image">
+      <img :src=" require(`../../assets/img/${product.miniImg}`) " alt="" class="v-mini-search-item__image">
       <div class="v-mini-search-item__block">
         <div class="v-mini-search-item__name">
           {{ product.name }}

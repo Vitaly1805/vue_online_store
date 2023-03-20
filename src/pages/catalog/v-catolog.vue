@@ -25,7 +25,6 @@
             :key="product.id"
             :product="product"
             :index="index"
-            @addProductToCart="addProductToCart"
           />
         </div>
         <div
@@ -43,7 +42,7 @@
 import vCatalogItem from '../../components/catalog/v-catalog-item.vue';
 import vSelect from '../../components/select/v-select.vue'
 import vFilter from '../../components/filter/v-filter.vue'
-import { mapGetters, mapActions, mapMutations } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
     name: 'v-catalog',
@@ -69,18 +68,11 @@ export default {
       }
     },
     methods: {
-      ...mapActions([
-        'FETCH_PRODUCTS'
-      ]),
       ...mapMutations([
-        'SET_CART',
         'SET_CATALOG',
         'SORT_CATALOG_BY_CHEAP',
         'SORT_CATALOG_BY_EXPANSIVE'
       ]),
-      addProductToCart(product) {
-        this.SET_CART(product)
-      },
       selectSortOption(index) {
         if (this.selectedSortOption !== this.sortOptions[index]) {
           this.selectedSortOption = this.sortOptions[index]
@@ -113,12 +105,6 @@ export default {
         "PRODUCTS",
         "CATALOG"
       ])
-    },
-    created() {
-      this.FETCH_PRODUCTS()
-        .then(() => {
-          this.SET_CATALOG(this.PRODUCTS.slice(0))
-        })
     }
 }
 </script>

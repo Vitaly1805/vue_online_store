@@ -1,6 +1,6 @@
 <template lang="">
   <div class="v-cart-item">
-    <img :src=" require(`../../assets/img/${product.img}`) " alt="" class="v-cart-item__img">
+    <img :src=" require(`../../assets/img/${product.miniImg}`) " alt="" class="v-cart-item__img">
     <div class="v-cart-item__name">
       {{product.name}}
     </div>
@@ -66,7 +66,6 @@ export default {
   methods: {
     ...mapMutations([
         'DELETE_PRODUCT_FROM_CART',
-        'SET_CART',
         'SET_QUANTITY'
     ]),
     setQuantity(quantity) {

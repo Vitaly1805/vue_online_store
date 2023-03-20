@@ -7,11 +7,38 @@
 
 <script>
 import vHeader from './header/v-header.vue'
+import { mapGetters, mapActions, mapMutations } from "vuex";
 
 export default {
     name: 'v-main-wrapper',
     components: {
       vHeader
+    },
+    methods: {
+      ...mapActions([
+        'FETCH_PRODUCTS'
+      ]),
+      ...mapMutations([
+        'SET_CATALOG'
+      ])
+    },
+    computed: {
+      ...mapGetters([
+        'PRODUCTS'
+      ])
+    },
+    created() {
+      this.FETCH_PRODUCTS()
+      queueMicrotask(() => {
+        queueMicrotask(() => {
+            this.SET_CATALOG(this.PRODUCTS.slice(0))
+          })
+      })
+        // .then(() => {
+        //   setTimeout(() => {
+        //     this.SET_CATALOG(this.PRODUCTS.slice(0))
+        //   })
+        // })
     }
 }
 </script>

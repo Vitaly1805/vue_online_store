@@ -1,18 +1,11 @@
 export default {
-  SET_CART (state, product) {
-    let isProductExists = false
-    
-    if(state.cart.length) {
-      state.cart.forEach(item => {
-        if(item.id === product.id) {
-          item.quantity++
-          isProductExists = true
-        }
-      })
-    }
+  SET_CART (state, {product, quantity = 1}) {
+    const index = state.cart.indexOf(product)
 
-    if(!isProductExists) {
-      product.quantity = 1
+    if(index > -1) {
+      state.cart[index].quantity += quantity
+    } else {
+      product.quantity = quantity
       state.cart.push(product)
     }
   },
