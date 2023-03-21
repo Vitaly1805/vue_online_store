@@ -1,9 +1,12 @@
 <template>
   <div class="v-header">
     <div class="v-header__body _container">
-      <router-link to="/">
-        <img src="../../assets/img/logo.png" alt="" class="v-header__logo">
-      </router-link>
+      <p
+        @click="resetCatalog">
+        <router-link to="/">
+          <img src="../../assets/img/logo.png" alt="" class="v-header__logo">
+        </router-link>
+      </p>
       <router-link to="/">
         <div class="v-header__products">
         <div class="v-header__burger">
@@ -16,7 +19,7 @@
       </div>  
       </router-link>
       <VSearch
-        
+        :isReset="isReset"
       />
       <div class="v-header__cart" @click="showMiniCart">
         <div class="v-header__cart-status">
@@ -35,13 +38,14 @@
 
 import vMiniCart from '../cart/v-mini-cart.vue'
 import VSearch from '../search/v-search.vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: "v-header",
   data() {
     return {
-      isActive: false
+      isActive: false,
+      isReset: false
     }
   },
   components: {
@@ -51,15 +55,24 @@ export default {
   computed: {
     ...mapGetters([
       'CART',
-      'QUANTITY_CART'
+      'QUANTITY_CART',
+      'CATALOG',
+      'PRODUCTS'
     ])
   },
   methods: {
+    ...mapMutations([
+      'SET_CATALOG'
+    ]),
     hiddenMiniCart() {
       this.isActive = false
     },
     showMiniCart() {
       this.isActive = true
+    },
+    resetCatalog() {
+      this.SET_CATALOG(this.PRODUCTS)
+      this.isReset = true
     }
   },
   mounted() {
@@ -87,6 +100,13 @@ export default {
     justify-content: space-between;
     align-items: center;
     height: 100%;
+
+    p {
+      a {
+        height: 100%;
+        display: block;
+      }
+    }
   }
 
   &__logo {

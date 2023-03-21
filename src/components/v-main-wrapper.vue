@@ -29,16 +29,9 @@ export default {
     },
     created() {
       this.FETCH_PRODUCTS()
-      queueMicrotask(() => {
-        queueMicrotask(() => {
+        .then(() => {
             this.SET_CATALOG(this.PRODUCTS.slice(0))
-          })
-      })
-        // .then(() => {
-        //   setTimeout(() => {
-        //     this.SET_CATALOG(this.PRODUCTS.slice(0))
-        //   })
-        // })
+        })
     }
 }
 </script>

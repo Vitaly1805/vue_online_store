@@ -6,6 +6,7 @@
           v-if="PRODUCTS.length"
           :products="products"
           @setProducts="setProducts"
+          :isDisable="isMessage"
         />
       </div>
       <div class="v-catalog__block">
@@ -14,9 +15,11 @@
         </div> 
         <div class="v-catalog__view">
           <vSelect
+            v-if="PRODUCTS.length"
             :options="sortOptions"
             :selected="selectedSortOption"
             @selectOption="selectSortOption"
+            :isDisable="isMessage"
           />
         </div>
         <div class="v-catalog__list">
@@ -71,7 +74,7 @@ export default {
       ...mapMutations([
         'SET_CATALOG',
         'SORT_CATALOG_BY_CHEAP',
-        'SORT_CATALOG_BY_EXPANSIVE'
+        'SORT_CATALOG_BY_EXPANSIVE',false
       ]),
       selectSortOption(index) {
         if (this.selectedSortOption !== this.sortOptions[index]) {
@@ -105,6 +108,11 @@ export default {
         "PRODUCTS",
         "CATALOG"
       ])
+    },
+    watch: {
+      CATALOG : function (val) {
+        this.isMessage = val.length ? false : true
+      }
     }
 }
 </script>

@@ -1,17 +1,19 @@
 <template>
-  <div class="v-mini-search-item">
-    <div class="v-mini-search-item__body">
-      <img :src=" require(`../../assets/img/${product.miniImg}`) " alt="" class="v-mini-search-item__image">
-      <div class="v-mini-search-item__block">
-        <div class="v-mini-search-item__name">
-          {{ product.name }}
-        </div>
-        <div class="v-mini-search-item__price">
-          Цена: {{ product.price }} р.
+  <router-link class="v-catalog-item__route" :to="`/product/${product.id}`">
+    <div class="v-mini-search-item">
+      <div class="v-mini-search-item__body">
+        <img :src=" require(`../../assets/img/${product.miniImg}`) " alt="" class="v-mini-search-item__image">
+        <div class="v-mini-search-item__block">
+          <div class="v-mini-search-item__name">
+            {{ product.name }}
+          </div>
+          <div class="v-mini-search-item__price">
+            Цена: {{ product.price }} р.
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>

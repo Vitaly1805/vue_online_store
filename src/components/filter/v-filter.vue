@@ -11,7 +11,8 @@
             @click="toggleShowSpoiler">
             Цена (руб.)
           </div>
-          <div class="v-filter__item-body">
+          <div class="v-filter__item-body"
+            v-if="!isDisable">
             <vSliderPrice 
               @setRangePrice="setRangePrice"
               @filterProducts="filterProducts"
@@ -24,7 +25,8 @@
             @click="toggleShowSpoiler">
             Производители
           </div>
-          <div class="v-filter__item-body">
+          <div class="v-filter__item-body"
+            v-if="!isDisable">
             <vManufacturer
               @changeManufacturers="changeManufacturers"
             />
@@ -47,6 +49,12 @@ export default {
         type: Array,
         default() {
           return []
+        }
+      },
+      isDisable: {
+        type: Boolean,
+        default() {
+          return false
         }
       }
     },

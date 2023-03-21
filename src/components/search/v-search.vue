@@ -23,6 +23,14 @@ import vMiniSearch from './v-mini-search.vue'
 
 export default {
     name: "v-search",
+    props: {
+        isReset: {
+            type: Boolean,
+            default() {
+                return false
+            }
+        }
+    },  
     data() {
         return {
             value: '',
@@ -63,6 +71,14 @@ export default {
             'PRODUCTS',
             'CATALOG'
         ])
+    },
+    watch: {
+        '$route.path'() {
+            this.value = ''
+        },
+        $props() {
+            this.value = ''
+        }
     }
 }
 

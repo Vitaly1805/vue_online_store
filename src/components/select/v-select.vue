@@ -5,7 +5,8 @@
       {{selected.name}}
     </div>
     <div class="v-select__list"
-      v-if="areOptionsVisible">
+
+      v-if="areOptionsVisible && !isDisable">
       <div class="v-select__item"
         v-for="( option, index ) in options" 
         :key="option.value"
@@ -31,6 +32,12 @@ export default {
       type: Object,
       default() {
         return {}
+      }
+    },
+    isDisable: {
+      type: Boolean,
+      default() {
+        return false
       }
     }
   },
@@ -65,6 +72,7 @@ export default {
   display: inline-block;
   width: 250px;
   position: relative;
+  z-index: 2;
 
   &__title,
   &__item {

@@ -37,10 +37,8 @@ export default {
     ...mapGetters(['CATALOG'])
   },
   mounted() {
-    document.addEventListener('click', (event) => {
-      if(!event.target.closest('.v-mini-search')) {
-        this.$emit('clearSearch')
-      }
+    document.addEventListener('click', () => {
+      this.$emit('clearSearch')
     })
   }
 }
@@ -49,6 +47,7 @@ export default {
 
 <style lang="scss">
 .v-mini-search {
+  z-index: 15;
   background: #fff;
   box-shadow: 0px -1px 8px 5px rgba(34, 60, 80, 0.2);
   overflow-y: auto;

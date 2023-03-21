@@ -1,18 +1,20 @@
 <template lang="">
-  <div class="v-mini-cart-item">
-    <img :src=" require(`../../assets/img/${product.miniImg}`) " alt="" class="v-mini-cart-item__img">
-    <div class="v-mini-cart-item__info">
-      <div class="v-mini-cart-item__name">
-        {{product.name}}
-      </div>
-      <div class="v-mini-cart-item__quantity">
-        Количество: {{product.quantity}}
-      </div>
-      <div class="v-mini-cart-item__price">
-        Цена: {{product.price}} руб.
+  <router-link class="v-catalog-item__route" :to="`/product/${product.id}`">
+    <div class="v-mini-cart-item">
+      <img :src=" require(`../../assets/img/${product.miniImg}`) " alt="" class="v-mini-cart-item__img">
+      <div class="v-mini-cart-item__info">
+        <div class="v-mini-cart-item__name">
+          {{product.name}}
+        </div>
+        <div class="v-mini-cart-item__quantity">
+          Количество: {{product.quantity}}
+        </div>
+        <div class="v-mini-cart-item__price">
+          Цена: {{product.price}} руб.
+        </div>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 <script>
 export default {
@@ -32,6 +34,11 @@ export default {
   display: flex;
   padding: 10px;
   height: 90px;
+  border-bottom: 1px solid #f6f6f6;
+
+  &:hover {
+    background: #f5f5f5;
+  }
 
   &__img {
     width: 60px;
