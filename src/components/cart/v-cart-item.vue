@@ -7,20 +7,6 @@
     <div class="v-cart-item__price">
       {{product.price}} руб.
     </div>
-    <!-- <div class="v-cart-item__block-quantity">
-      <div class="v-cart-item__quantity-decrement" 
-        @click="DECREMENT_QUANTITY_PRODUCT(index)"  
-      ></div>
-      <input type="number" class="v-cart-item__quantity" 
-        :value="product.quantity"
-        @input="setQuantity"
-        @blur="setQuantityToInput"
-        >
-      <div class="v-cart-item__quantity-increment"
-        @click="INCREMENT_QUANTITY_PRODUCT(index)"  
-      ></div>
-      <span></span>
-    </div> -->
     <vQuantityProduct
         :product="product"
         :quantity="product.quantity"

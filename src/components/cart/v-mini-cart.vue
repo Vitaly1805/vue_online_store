@@ -1,6 +1,8 @@
 <template lang="">
-  <div class="v-mini-cart">
-      <div class="v-mini-cart__list">
+  <div class="v-mini-cart"
+    v-if="CART.length">
+      <div class="v-mini-cart__list"
+        @click.stop="hiddenMiniCart">
       <vMiniCartItem
         v-for="item in CART"
         :key="item.id"
@@ -45,9 +47,6 @@ export default {
   methods: {
     hiddenMiniCart() {
       this.$emit('hiddenMiniCart')
-    },
-    test(event) {
-      console.log(event.target)
     }
   }
 }
