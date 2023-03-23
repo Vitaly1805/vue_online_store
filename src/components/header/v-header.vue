@@ -73,6 +73,10 @@ export default {
     resetCatalog() {
       this.SET_CATALOG(this.PRODUCTS)
       this.isReset = true
+
+      setTimeout(() => {
+        this.isReset = false 
+      });
     }
   },
   mounted() {

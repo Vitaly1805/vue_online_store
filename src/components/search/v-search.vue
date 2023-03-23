@@ -76,7 +76,7 @@ export default {
         '$route.path'() {
             this.value = ''
         },
-        $props() {
+        isReset() {
             this.value = ''
         }
     }
