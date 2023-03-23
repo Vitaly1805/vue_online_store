@@ -20,6 +20,7 @@
 
 import { mapGetters, mapMutations } from 'vuex';
 import vMiniSearch from './v-mini-search.vue'
+import * as funcs from './../../assets/js/functions'
 
 export default {
     name: "v-search",
@@ -43,24 +44,25 @@ export default {
     methods: {
         ...mapMutations(['SET_CATALOG']),
         searchProducts(event) {
-            this.value = event.target.value.trim().toLowerCase()
+            let value = funcs.getPrepareSearchValue(event.target.value)
             event.target.blur()
 
-            const products = this.filterProducts()
+            const products = this.filterProducts(value)
 
             this.SET_CATALOG(products)
         },
         searchMiniProducts(event) {
             setTimeout(() => {
                 if(event.code !== 'Enter' && this.value.length > 3) {
-                    this.miniProducts = this.filterProducts().slice(0, 11)
+                    let value = funcs.getPrepareSearchValue(event.target.value)
+                    this.miniProducts = this.filterProducts(value).slice(0, 11)
                 } else {
                     this.miniProducts = []
                 }
             })
         },
-        filterProducts() {
-            return this.PRODUCTS.filter(product => product.name.toLowerCase().includes(this.value))
+        filterProducts(value) {
+            return this.PRODUCTS.filter(product => product.name.toLowerCase().includes(value))
         },
         clearMiniSearch() {
             this.miniProducts = []
